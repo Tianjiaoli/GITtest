@@ -1,0 +1,13 @@
+CREATE TABLE [data].[Cluster_SqlServer_Agent_Job_Instances]
+(
+[Id] [bigint] NOT NULL,
+[CollectionDate] [bigint] NOT NULL,
+[_DateCreated] [bigint] NULL
+) ON [PRIMARY]
+GO
+ALTER TABLE [data].[Cluster_SqlServer_Agent_Job_Instances] ADD CONSTRAINT [Cluster_SqlServer_Agent_Job_Instances_Id] PRIMARY KEY CLUSTERED  ([Id]) WITH (IGNORE_DUP_KEY=ON) ON [PRIMARY]
+GO
+ALTER TABLE [data].[Cluster_SqlServer_Agent_Job_Instances] ADD CONSTRAINT [Cluster_SqlServer_Agent_Job_Instances_Cluster_SqlServer_Agent_Job_Keys] FOREIGN KEY ([Id]) REFERENCES [data].[Cluster_SqlServer_Agent_Job_Keys] ([Id]) ON DELETE CASCADE
+GO
+EXEC sp_addextendedproperty N'MS_Description', N'Time and date this job was created', 'SCHEMA', N'data', 'TABLE', N'Cluster_SqlServer_Agent_Job_Instances', 'COLUMN', N'_DateCreated'
+GO
